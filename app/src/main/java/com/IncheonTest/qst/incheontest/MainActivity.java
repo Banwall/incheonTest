@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         String imageStr2 = "http://192.168.200.44:8081/image/view?fileName=back2.jpg";
         Glide.with(this).load(imageStr2).into(parkingPic2);
 
-
+        Log.d("테스트", "작동 안함");
 
         call = Retrofit_client.getApiService().getPosts();
         call.enqueue(new Callback<List<PostResult>>() {
