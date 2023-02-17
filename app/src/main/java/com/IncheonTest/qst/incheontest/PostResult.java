@@ -3,6 +3,9 @@ package com.IncheonTest.qst.incheontest;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+import java.util.Map;
+
 public class PostResult {
 
     @SerializedName("fileName")
@@ -56,6 +59,22 @@ public class PostResult {
     @Expose
     private String distance;
 
+    @SerializedName("sumByDay")
+    @Expose
+    private String sumByDay;
+
+    @SerializedName("chartDay")
+    @Expose
+    private String chartDay;
+
+    @SerializedName("postResultMap")
+    @Expose
+    private Map<String, List<PostResult>> postResultMap;
+
+    public Map<String, List<PostResult>> getPostResultMap() {
+        return postResultMap;
+    }
+
     public String getFileName() {
         return fileName;
     }
@@ -104,6 +123,14 @@ public class PostResult {
         return distance;
     }
 
+    public String getSumByDay() {
+        return sumByDay;
+    }
+
+    public String getChartDay() {
+        return chartDay;
+    }
+
     @Override
     public String toString() {
         return "PostResult{" +
@@ -119,6 +146,8 @@ public class PostResult {
                 ", cdt='" + cdt + '\'' +
                 ", mdt='" + mdt + '\'' +
                 ", distance='" + distance + '\'' +
+                ", sumByDay='" + sumByDay + '\'' +
+                ", chartDay='" + chartDay + '\'' +
                 '}';
     }
 }

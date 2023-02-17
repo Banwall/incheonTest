@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".MainActivity">
+
+    <include layout="@layout/toolbar_dashboard"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="335dp"
+        android:layout_weight="100">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/camera103"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3번 카메라" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/parkingPic1"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="3"
+                        tools:srcCompat="@tools:sample/avatars"
+                        android:scaleType="centerCrop" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/parking_StartTime1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:autoSizeTextType="none"
+                            android:gravity="center|left"
+                            android:text="출차시간: 2023-02-08-10:30:22"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/parking_EndTime1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:autoSizeTextType="none"
+                            android:gravity="center|left"
+                            android:text="주차시간 : 1시간 22분"
+                            android:textSize="18sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="42dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="4dp"
+                                android:layout_height="92dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/isEv1"
+                                    android:layout_width="65dp"
+                                    android:layout_height="2dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="전기차" />
+
+                                <TextView
+                                    android:id="@+id/isNotEv1"
+                                    android:layout_width="65dp"
+                                    android:layout_height="2dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="일반차" />
+
+                                <TextView
+                                    android:id="@+id/isNotCar1"
+                                    android:layout_width="65dp"
+                                    android:layout_height="2dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="주차가능" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="63dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/lprNumber1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="94dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="17아 4679" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="45dp" />
+
+            <TextView
+                android:id="@+id/camera102"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2번 카메라" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/parkingPic2"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="3"
+                        tools:srcCompat="@tools:sample/avatars"
+                        android:scaleType="centerCrop" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/parking_StartTime2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:autoSizeTextType="none"
+                            android:gravity="center|left"
+                            android:text="출차시간: 2023-02-08-10:30:22"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/parking_EndTime2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:autoSizeTextType="none"
+                            android:gravity="center|left"
+                            android:text="주차시간 : 1시간 22분"
+                            android:textSize="18sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="42dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="4dp"
+                                android:layout_height="92dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/isEv2"
+                                    android:layout_width="65dp"
+                                    android:layout_height="2dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="전기차" />
+
+                                <TextView
+                                    android:id="@+id/isNotEv2"
+                                    android:layout_width="65dp"
+                                    android:layout_height="2dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="일반차" />
+
+                                <TextView
+                                    android:id="@+id/isNotCar2"
+                                    android:layout_width="65dp"
+                                    android:layout_height="2dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="주차가능" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="63dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/lprNumber2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="94dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="17아 4679" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/camera101"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1번 카메라" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/parkingPic3"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="3"
+                        tools:srcCompat="@tools:sample/avatars"
+                        android:scaleType="centerCrop" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/parking_StartTime3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:autoSizeTextType="none"
+                            android:gravity="center|left"
+                            android:text="출차시간: 2023-02-08-10:30:22"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/parking_EndTime3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:autoSizeTextType="none"
+                            android:gravity="center|left"
+                            android:text="주차시간 : 1시간 22분"
+                            android:textSize="18sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="42dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="4dp"
+                                android:layout_height="92dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/isEv3"
+                                    android:layout_width="65dp"
+                                    android:layout_height="2dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="전기차" />
+
+                                <TextView
+                                    android:id="@+id/isNotEv3"
+                                    android:layout_width="65dp"
+                                    android:layout_height="2dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="일반차" />
+
+                                <TextView
+                                    android:id="@+id/isNotCar3"
+                                    android:layout_width="65dp"
+                                    android:layout_height="2dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="주차가능" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="63dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/lprNumber3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="94dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="17아 4679" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

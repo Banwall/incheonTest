@@ -9,7 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Retrofit_client {
     private static final String BASE_URL = "http://192.168.200.44:8081/";
 
-
     public static RestApi getApiService() {
         return getInstance().create(RestApi.class);
     }
@@ -21,5 +20,4 @@ public class Retrofit_client {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
-
 }

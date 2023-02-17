@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChartActivity">
+
+    <include
+        layout="@layout/toolbar_chart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/chart101"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1번 주차장" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/firstBarChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+            </com.github.mikephil.charting.charts.BarChart>
+
+            <TextView
+                android:id="@+id/chart102"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2번 주차장" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/twoBarChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+            <TextView
+                android:id="@+id/chart103"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3번 주차장" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/thirdBarChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+            </com.github.mikephil.charting.charts.BarChart>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
