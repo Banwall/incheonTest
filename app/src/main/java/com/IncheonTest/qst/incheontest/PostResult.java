@@ -67,6 +67,14 @@ public class PostResult {
     @Expose
     private String chartDay;
 
+    @SerializedName("mdtNow")
+    @Expose
+    private String mdtNow;
+
+    @SerializedName("lastFileName")
+    @Expose
+    private String lastFileName;
+
     @SerializedName("postResultMap")
     @Expose
     private Map<String, List<PostResult>> postResultMap;
@@ -74,6 +82,14 @@ public class PostResult {
     public Map<String, List<PostResult>> getPostResultMap() {
         return postResultMap;
     }
+
+    /*@SerializedName("postMainResultMap")
+    @Expose
+    private Map<String, List<PostResult>> postMainResultMap;
+
+    public Map<String, List<PostResult>> getPostMainResultMap() {
+        return postMainResultMap;
+    }*/
 
     public String getFileName() {
         return fileName;
@@ -131,6 +147,10 @@ public class PostResult {
         return chartDay;
     }
 
+    public String getMdtNow() { return mdtNow; }
+
+    public String getLastFileName() { return lastFileName; }
+
     @Override
     public String toString() {
         return "PostResult{" +
@@ -148,6 +168,8 @@ public class PostResult {
                 ", distance='" + distance + '\'' +
                 ", sumByDay='" + sumByDay + '\'' +
                 ", chartDay='" + chartDay + '\'' +
+                ", mdtNow='" + mdtNow + '\'' +
+                ", lastFileName='" + lastFileName + '\'' +
                 '}';
     }
 }

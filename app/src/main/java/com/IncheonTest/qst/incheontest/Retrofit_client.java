@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofit_client {
-    private static final String BASE_URL = "http://192.168.200.44:8081/";
+    private static final String BASE_URL = "http://qst-s.iptime.org:18092/";
 
     public static RestApi getApiService() {
         return getInstance().create(RestApi.class);

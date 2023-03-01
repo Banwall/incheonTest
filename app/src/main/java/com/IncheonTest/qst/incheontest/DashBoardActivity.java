@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -15,7 +17,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,11 +28,17 @@ import retrofit2.Response;
 
 public class DashBoardActivity extends AppCompatActivity {
 
-    Call<List<PostResult>> call;
+    Call<Map<String, List<PostResult>>> call;
     TextView parkingStartTime1, parkingEndTime1, isEv1, isNotEv1, isNotCar1, lprNumber1;
     TextView parkingStartTime2, parkingEndTime2, isEv2, isNotEv2, isNotCar2, lprNumber2;
     TextView parkingStartTime3, parkingEndTime3, isEv3, isNotEv3, isNotCar3, lprNumber3;
     ImageView parkingPic1, parkingPic2, parkingPic3;
+    public String now = "";
+
+    /** 이미지 관련 *****************************************************/
+    public String firstImg = "";
+    public String secondImg = "";
+    public String thirdImg = "";
 
     public static String toolBarName;
 
@@ -77,42 +88,72 @@ public class DashBoardActivity extends AppCompatActivity {
         parkingPic2 = findViewById(R.id.parkingPic2);
         parkingPic3 = findViewById(R.id.parkingPic3);
 
-        String imageStr = "http://192.168.200.44:8081/image/view?fileName=back1.jpg";
-        Glide.with(this).load(imageStr).into(parkingPic1);
+        LocalDateTime nowDate = LocalDateTime.now();
+        now = nowDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-        String imageStr2 = "http://192.168.200.44:8081/image/view?fileName=back2.jpg";
-        Glide.with(this).load(imageStr2).into(parkingPic2);
-
-        String imageStr3 = "http://192.168.200.44:8081/image/view?fileName=back3.jpg";
-        Glide.with(this).load(imageStr3).into(parkingPic3);
-
-        call = Retrofit_client.getApiService().getPosts();
-        call.enqueue(new Callback<List<PostResult>>() {
+        call = Retrofit_client.getApiService().getParkingData();
+        call.enqueue(new Callback<Map<String, List<PostResult>>>() {
             //콜백 받는 부분
+            @SuppressLint("SetTextI18n")
             @Override
-            public void onResponse(Call<List<PostResult>> call, Response<List<PostResult>> response) {
-                List<PostResult> result = response.body();
+            public void onResponse(Call<Map<String, List<PostResult>>> call, Response<Map<String, List<PostResult>>> response) {
+                Map<String, List<PostResult>> resultMap = response.body();
 
-                //str1
-                parkingStartTime1.setText("\t입차시간 : " + result.get(0).getCdt());
-                parkingEndTime1.setText("\t주차시간 : 1시간 22분");
+                List<PostResult> result = resultMap.get("parkingDataList");
+                List<PostResult> camera1 = resultMap.get("camera1");
+                List<PostResult> camera2 = resultMap.get("camera2");
+                List<PostResult> camera3 = resultMap.get("camera3");
 
-                switch (result.get(0).getLpr()) {
+                firstImg = "http://qst-s.iptime.org:18092/image/view?fileName=" + result.get(0).getFileName();
+                secondImg = "http://qst-s.iptime.org:18092/image/view?fileName=" + result.get(1).getFileName();
+                thirdImg = "http://qst-s.iptime.org:18092/image/view?fileName=" + result.get(2).getFileName();
+
+                Glide.with(DashBoardActivity.this).load(firstImg).into(parkingPic3);
+                Glide.with(DashBoardActivity.this).load(secondImg).into(parkingPic2);
+                Glide.with(DashBoardActivity.this).load(thirdImg).into(parkingPic1);
+
+                if(camera1.size() > 0) {
+                    parkingStartTime1.setText("\t입차시간 : " + camera1.get(0).getCdt());
+                    parkingEndTime1.setText("\t주차시간 : " + (camera1.get(0).getMdt() == null ? camera1.get(0).getMdtNow() : camera1.get(0).getMdt()));
+                } else {
+                    parkingStartTime1.setText("\t입차시간 : " + now);
+                    parkingEndTime1.setText("\t주차시간 : ");
+                }
+
+                if(camera2.size() > 0) {
+                    parkingStartTime2.setText("\t입차시간 : " + camera2.get(0).getCdt());
+                    parkingEndTime2.setText("\t주차시간 : " + (camera2.get(0).getMdt() == null ? camera2.get(0).getMdtNow() : camera2.get(0).getMdt()));
+                } else {
+                    parkingStartTime2.setText("\t입차시간 : " + now);
+                    parkingEndTime2.setText("\t주차시간 : ");
+                }
+
+                if(camera3.size() > 0) {
+                    parkingStartTime3.setText("\t입차시간 : " + camera3.get(0).getCdt());
+                    parkingEndTime3.setText("\t주차시간 : " + (camera3.get(0).getMdt() == null ? camera3.get(0).getMdtNow() : camera3.get(0).getMdt()));
+                } else {
+                    parkingStartTime3.setText("\t입차시간 : " + now);
+                    parkingEndTime3.setText("\t주차시간 : ");
+                }
+
+                //parkingStartTime1.setText("\t입차시간 : " + (camera1.get(0).getCdt().isEmpty() ? now : camera1.get(0).getCdt()));
+                //parkingStartTime2.setText("\t입차시간 : " + (camera2.get(0).getCdt().isEmpty() ? now : camera2.get(0).getCdt()));
+                //parkingStartTime3.setText("\t입차시간 : " + (camera3.get(0).getCdt().isEmpty() ? now : camera3.get(0).getCdt()));
+
+                //str3
+                switch (result.get(0).getVehicle()) {
                     case "0000" :
-                        isEv1.setBackgroundColor(Color.parseColor("#FF0000"));
+                        isEv3.setBackgroundColor(Color.parseColor("#FF0000"));
                         break;
                     case "0001" :
-                        isNotEv1.setBackgroundColor(Color.parseColor("#FF0000"));
+                        isNotEv3.setBackgroundColor(Color.parseColor("#FF0000"));
                         break;
                     default :
-                        isNotCar1.setBackgroundColor(Color.parseColor("#00FF00"));
+                        isNotCar3.setBackgroundColor(Color.parseColor("#00FF00"));
                 }
-                lprNumber1.setText(result.get(0).getLprnumber().equals("9999") ? "" : result.get(0).getLprnumber());
+                lprNumber3.setText(result.get(0).getLprnumber().equals("9999") ? "" : result.get(0).getLprnumber());
 
                 //str2
-                parkingStartTime2.setText("\t입차시간 : " + result.get(1).getCdt());
-                parkingEndTime2.setText("\t주차시간 : 1시간 22분");
-
                 switch (result.get(1).getVehicle()) {
                     case "0000" :
                         isEv2.setBackgroundColor(Color.parseColor("#FF0000"));
@@ -125,26 +166,23 @@ public class DashBoardActivity extends AppCompatActivity {
                 }
                 lprNumber2.setText(result.get(1).getLprnumber().equals("9999") ? "" : result.get(1).getLprnumber());
 
-                //str3
-                parkingStartTime3.setText("\t입차시간 : " + result.get(2).getCdt());
-                parkingEndTime3.setText("\t주차시간 : 1시간 22분");
-
-                switch (result.get(2).getLpr()) {
+                //str1
+                switch (result.get(2).getVehicle()) {
                     case "0000" :
-                        isEv3.setBackgroundColor(Color.parseColor("#FF0000"));
+                        isEv1.setBackgroundColor(Color.parseColor("#FF0000"));
                         break;
                     case "0001" :
-                        isNotEv3.setBackgroundColor(Color.parseColor("#FF0000"));
+                        isNotEv1.setBackgroundColor(Color.parseColor("#FF0000"));
                         break;
                     default :
-                        isNotCar3.setBackgroundColor(Color.parseColor("#00FF00"));
+                        isNotCar1.setBackgroundColor(Color.parseColor("#00FF00"));
                 }
-                lprNumber3.setText(result.get(2).getLprnumber().equals("9999") ? "" : result.get(2).getLprnumber());
+                lprNumber1.setText(result.get(2).getLprnumber().equals("9999") ? "" : result.get(2).getLprnumber());
             }
 
             @Override
-            public void onFailure(Call<List<PostResult>> call, Throwable t) {
-
+            public void onFailure(Call<Map<String, List<PostResult>>> call, Throwable t) {
+                Log.d("실패", t.getLocalizedMessage());
             }
         });
     }
@@ -170,5 +208,17 @@ public class DashBoardActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected (item);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent event) {
+        if(keycode ==KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        return false;
     }
 }

@@ -1,25 +1,23 @@
 package com.IncheonTest.qst.incheontest;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.KeyEvent;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -114,7 +112,7 @@ public class ChartActivity extends AppCompatActivity {
         });
     }
 
-    // 메뉴 리소스 XML의 내용을 앱바(App Bar)에 반영
+/*    // 메뉴 리소스 XML의 내용을 앱바(App Bar)에 반영
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_chart, menu);
@@ -129,14 +127,11 @@ public class ChartActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId ()) {
             case R.id.dashboard:
-                Intent intent = new Intent(this, DashBoardActivity.class);
-                intent.putExtra("name", DashBoardActivity.toolBarName);
-                startActivity(intent);
-                finish();
+
             default:
                 return super.onOptionsItemSelected (item);
         }
-    }
+    }*/
 
     public void setChartData() {
 
@@ -259,13 +254,9 @@ public class ChartActivity extends AppCompatActivity {
                 break;
         }
 
-        // legendList에 날짜별로 들어가니 List[0] 빨간색 List[1] 주황색 ........ List[6] 보라색 ToolBar에 세팅하기
-
-        //getSupportActionBar().setTitle(요일별 색 지정해서 Text로 띄워주기);
-
-        firstBarDataSet = new BarDataSet(firstEntryChart, "주차시간");
-        twoBarDataSet = new BarDataSet(twoEntryChart, "주차시간");
-        thirdBarDataSet = new BarDataSet(thirdEntryChart, "주차시간");
+        firstBarDataSet = new BarDataSet(firstEntryChart, "");
+        twoBarDataSet = new BarDataSet(twoEntryChart, "");
+        thirdBarDataSet = new BarDataSet(thirdEntryChart, "");
 
         firstBarDataSet.setColors(rainbowColors);
         twoBarDataSet.setColors(rainbowColors);
@@ -302,6 +293,14 @@ public class ChartActivity extends AppCompatActivity {
         thirdXAxis.setGranularity(1f);
         thirdXAxis.setLabelCount(dayList.size());
 
+        Legend firstLegend = firstBarChart.getLegend();
+        Legend twoLegend = twoBarChart.getLegend();
+        Legend thirdLegend = thirdBarChart.getLegend();
+
+        firstLegend.setEnabled(false);
+        twoLegend.setEnabled(false);
+        thirdLegend.setEnabled(false);
+
         firstBarChart.setDescription(description);
         twoBarChart.setDescription(description);
         thirdBarChart.setDescription(description);
@@ -325,5 +324,18 @@ public class ChartActivity extends AppCompatActivity {
         firstBarChart.setTouchEnabled(false);
         twoBarChart.setTouchEnabled(false);
         thirdBarChart.setTouchEnabled(false);
+    }
+
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent event) {
+        if(keycode ==KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(this, DashBoardActivity.class);
+            intent.putExtra("name", DashBoardActivity.toolBarName);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        return false;
     }
 }
